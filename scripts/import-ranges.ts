@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { parse } from "csv-parse/sync";
 import { createClient } from "@supabase/supabase-js";
+import { config as dotenvConfig } from "dotenv";
 import { derivePriceBucket } from "../lib/utils/price";
 import { normalizeCity } from "../lib/utils/city";
 import { toSlug } from "../lib/utils/slug";
@@ -61,6 +62,9 @@ function requireEnv(name: string): string {
 }
 
 async function main() {
+  dotenvConfig({ path: path.resolve(process.cwd(), ".env.local") });
+  dotenvConfig({ path: path.resolve(process.cwd(), ".env") });
+
   const fileArg = process.argv[2] ?? "data/ranges-template.csv";
   const csvPath = path.resolve(process.cwd(), fileArg);
 
