@@ -30,25 +30,30 @@ export default async function CityPage({ params, searchParams }: CityPageProps) 
   const response = await getCityRanges(city, filters);
 
   return (
-    <section className="stack-lg">
-      <header className="card stack-sm">
+    <section className="stack-lg animate-in">
+      <header className="hero" style={{ padding: "3.5rem 2rem", textAlign: "center" }}>
+        <span className="eyebrow">City Guide</span>
         <h1>Driving Ranges in {response.city}</h1>
-        <p className="text-muted">
-          Canonical city page for local golf practice searches in {response.city}.
+        <p className="text-muted" style={{ maxWidth: "600px", margin: "1rem auto 0" }}>
+          Explore the best local golf practice searches, indoor simulators, and driving ranges in {response.city}.
         </p>
       </header>
 
-      <FilterPanel initialFilters={{ ...filters, city: response.city }} actionPath={`/city/${city}`} />
+      <div className="animate-in" style={{ animationDelay: "0.1s" }}>
+        <FilterPanel initialFilters={{ ...filters, city: response.city }} actionPath={`/city/${city}`} />
+      </div>
 
-      {response.ranges.length === 0 ? (
-        <p className="text-muted">No published ranges available in this city yet.</p>
-      ) : (
-        <div className="results-grid">
-          {response.ranges.map((range) => (
-            <RangeCard key={range.id} range={range} />
-          ))}
-        </div>
-      )}
+      <div className="animate-in" style={{ animationDelay: "0.2s" }}>
+        {response.ranges.length === 0 ? (
+          <p className="text-muted">No published ranges available in this city yet.</p>
+        ) : (
+          <div className="results-grid">
+            {response.ranges.map((range) => (
+              <RangeCard key={range.id} range={range} />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }

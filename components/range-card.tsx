@@ -9,26 +9,32 @@ interface RangeCardProps {
 export function RangeCard({ range }: RangeCardProps) {
   return (
     <article className="card range-card">
-      <div className="range-card-head">
-        <h3>
-          <Link href={`/range/${range.slug}`}>{range.name}</Link>
-        </h3>
-        <span className="pill">{range.facility_type}</span>
+      <div className="range-card-img-placeholder">
+        {/* Placeholder for future specific images, using CSS background for now */}
       </div>
-      <p className="text-muted">{range.address}</p>
-      <p className="text-muted">
-        <Link href={`/city/${cityToSlug(range.city)}`}>{range.city}</Link> · {range.postcode}
-      </p>
-      <div className="range-card-meta">
-        <span>Covered bays: {range.covered_bays ? "Yes" : "No"}</span>
-        <span>Floodlights: {range.floodlights ? "Yes" : "No"}</span>
-        <span>Short game area: {range.short_game_area ? "Yes" : "No"}</span>
-      </div>
-      <div className="range-card-footer">
-        <span>
-          Price (100 balls): {range.price_100_balls != null ? `£${range.price_100_balls.toFixed(2)}` : "Not listed"}
-        </span>
-        {range.distance_km != null ? <span>{range.distance_km.toFixed(1)} km away</span> : null}
+      <div className="range-card-content">
+        <div className="range-card-head">
+          <h3>
+            <Link href={`/range/${range.slug}`}>{range.name}</Link>
+          </h3>
+          <span className="pill">{range.facility_type}</span>
+        </div>
+        <p className="text-muted">
+          {range.address}, <Link href={`/city/${cityToSlug(range.city)}`}>{range.city}</Link> {range.postcode}
+        </p>
+        
+        <div className="range-card-meta">
+          {range.covered_bays && <span className="meta-tag">☔ Covered Bays</span>}
+          {range.floodlights && <span className="meta-tag">💡 Floodlights</span>}
+          {range.short_game_area && <span className="meta-tag">⛳ Short Game</span>}
+        </div>
+        
+        <div className="range-card-footer">
+          <span className="price">
+            {range.price_100_balls != null ? `£${range.price_100_balls.toFixed(2)}` : "Price Not Listed"}
+          </span>
+          {range.distance_km != null ? <span className="distance">{range.distance_km.toFixed(1)} km away</span> : null}
+        </div>
       </div>
     </article>
   );

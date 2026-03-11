@@ -11,30 +11,32 @@ export default async function HomePage() {
 
   return (
     <section className="stack-lg">
-      <div className="hero card">
-        <p className="eyebrow">UK Directory</p>
-        <h1>Find the best driving ranges and indoor golf simulators near you.</h1>
+      <div className="hero animate-in">
+        <span className="eyebrow">The UK&apos;s Premium Directory</span>
+        <h1>
+          Find the <span className="text-gradient">best driving ranges</span> and indoor simulators near you.
+        </h1>
         <p className="text-muted">
-          Browse UK facilities, compare prices, filter by features, and discover nearby options in seconds.
+          Browse top-tier UK facilities, compare prices, filter by trackman, and discover hidden gems in your area.
         </p>
         <div className="hero-actions">
-          <Link href="/ranges" className="button-link">
+          <Link href="/ranges" className="button">
             Browse all ranges
           </Link>
-          <Link href="/near-me" className="button-link secondary">
+          <Link href="/near-me" className="button secondary">
             Use my location
           </Link>
         </div>
       </div>
 
-      <section className="stack-md">
+      <section className="stack-md animate-in" style={{ animationDelay: "0.1s" }}>
         <h2>Popular cities</h2>
         {popularCities.length === 0 ? (
           <p className="text-muted">No city data loaded yet. Import your CSV seed to populate this section.</p>
         ) : (
           <div className="city-grid">
             {popularCities.map((city) => (
-              <Link key={city} href={`/city/${cityToSlug(city)}`} className="card city-card">
+              <Link key={city} href={`/city/${cityToSlug(city)}`} className="city-card">
                 <strong>{city}</strong>
                 <span>Explore listings</span>
               </Link>
@@ -43,10 +45,10 @@ export default async function HomePage() {
         )}
       </section>
 
-      <section className="stack-md">
+      <section className="stack-md animate-in" style={{ animationDelay: "0.2s" }}>
         <div className="section-row">
           <h2>Featured ranges</h2>
-          <Link href="/ranges">View all</Link>
+          <Link href="/ranges">View all →</Link>
         </div>
         {featuredRanges.length === 0 ? (
           <p className="text-muted">No published ranges yet.</p>

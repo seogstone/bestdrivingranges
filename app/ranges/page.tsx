@@ -18,33 +18,37 @@ export default async function RangesPage({ searchParams }: RangesPageProps) {
   const response = await listRanges(filters);
 
   return (
-    <section className="stack-lg">
-      <header className="section-row">
+    <section className="stack-lg animate-in">
+      <header className="section-row" style={{ alignItems: "center" }}>
         <div>
           <h1>All Driving Ranges</h1>
           <p className="text-muted">{response.total} published listings</p>
         </div>
         <div className="filter-inline">
-          <Link href={`/ranges?${params.toString()}`}>List view</Link>
-          <Link href={`/ranges?${new URLSearchParams({ ...Object.fromEntries(params), view: "map" }).toString()}`}>
+          <Link href={`/ranges?${params.toString()}`} className={`button ${view === 'list' ? '' : 'secondary'}`}>List view</Link>
+          <Link href={`/ranges?${new URLSearchParams({ ...Object.fromEntries(params), view: "map" }).toString()}`} className={`button ${view === 'map' ? '' : 'secondary'}`}>
             Map view
           </Link>
         </div>
       </header>
 
-      <FilterPanel initialFilters={filters} actionPath="/ranges" />
+      <div className="animate-in" style={{ animationDelay: "0.1s" }}>
+        <FilterPanel initialFilters={filters} actionPath="/ranges" />
+      </div>
 
-      {view === "map" ? (
-        <DirectoryMap ranges={response.ranges} />
-      ) : response.ranges.length === 0 ? (
-        <p className="text-muted">No listings match these filters.</p>
-      ) : (
-        <div className="results-grid">
-          {response.ranges.map((range) => (
-            <RangeCard key={range.id} range={range} />
-          ))}
-        </div>
-      )}
+      <div className="animate-in" style={{ animationDelay: "0.2s" }}>
+        {view === "map" ? (
+          <DirectoryMap ranges={response.ranges} />
+        ) : response.ranges.length === 0 ? (
+          <p className="text-muted">No listings match these filters.</p>
+        ) : (
+          <div className="results-grid">
+            {response.ranges.map((range) => (
+              <RangeCard key={range.id} range={range} />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }

@@ -5,13 +5,12 @@ const navItems = [
   { href: "/map", label: "Map" },
   { href: "/near-me", label: "Near Me" },
   { href: "/submit", label: "Submit Range" },
-  { href: "/admin/submissions", label: "Admin" },
 ];
 
 export function SiteHeader() {
   return (
     <header className="site-header">
-      <div className="container site-header-inner">
+      <div className="container site-header-inner animate-in">
         <Link href="/" className="site-logo">
           BestDrivingRanges
         </Link>
@@ -21,6 +20,9 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
+          <Link href="/admin/submissions" className="site-nav-link" style={{ fontSize: "0.8rem", opacity: 0.7 }}>
+            Admin
+          </Link>
         </nav>
       </div>
     </header>

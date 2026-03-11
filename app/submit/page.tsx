@@ -7,12 +7,14 @@ export const metadata = {
 
 export default function SubmitPage() {
   return (
-    <section className="stack-md">
-      <header>
+    <section className="stack-lg animate-in">
+      <header className="hero" style={{ padding: "3rem 1.5rem" }}>
         <h1>Submit a Range</h1>
         <p className="text-muted">Help expand the UK directory by submitting missing facilities.</p>
       </header>
-      <SubmitRangeForm />
+      <div className="animate-in" style={{ animationDelay: "0.1s" }}>
+        <SubmitRangeForm />
+      </div>
     </section>
   );
 }
