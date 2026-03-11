@@ -12,6 +12,7 @@
     "test:unit": "vitest run tests/unit",
     "test:integration": "vitest run tests/integration",
     "test:e2e": "playwright test",
+    "fetch:ranges:osm": "tsx scripts/fetch-osm-ranges.ts",
     "import:ranges": "tsx scripts/import-ranges.ts"
   },
   "dependencies": {
